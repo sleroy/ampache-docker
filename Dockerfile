@@ -37,6 +37,9 @@ RUN rm -rf * && git clone https://github.com/ampache/ampache && mv ampache/* .
 RUN composer install --prefer-source --no-interaction && \
 RUN chown -R www-data ..
 
+ADD ampache.cfg.php.dist /var/temp/ampache.cfg.php.dist
+ADD run.sh /run.sh
+
 # setup apache with default ampache vhost
 ADD 001-ampache.conf /etc/apache2/sites-available/
 RUN rm -rf /etc/apache2/sites-enabled/*
