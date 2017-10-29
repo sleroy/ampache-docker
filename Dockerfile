@@ -39,6 +39,7 @@ RUN chown -R www-data ..
 
 ADD ampache.cfg.php.dist /var/temp/ampache.cfg.php.dist
 ADD run.sh /run.sh
+RUN chmod 755 /*.sh
 
 # setup apache with default ampache vhost
 ADD 001-ampache.conf /etc/apache2/sites-available/
@@ -53,4 +54,5 @@ RUN echo '30 7    * * *   www-data php /var/www/bin/catalog_update.inc' >> /etc/
 VOLUME ["/var/www/config"]
 VOLUME ["/var/www/themes"]	
 EXPOSE 80
+
 CMD ["/run.sh"]
