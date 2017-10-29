@@ -28,13 +28,14 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install -y \
 RUN rm -rf /var/lib/apt/lists/*
 
 # Install composer for dependency management
+
 RUN php -r "readfile('https://getcomposer.org/installer');" | php && \
 	mv composer.phar /usr/local/bin/composer
 
 # extraction / installation
 WORKDIR /var/www
 RUN rm -rf * && git clone https://github.com/ampache/ampache && mv ampache/* .
-RUN composer install --prefer-source --no-interaction && \
+RUN composer install --prefer-source --no-interaction -o && \
 RUN chown -R www-data ..
 
 ADD ampache.cfg.php.dist /var/temp/ampache.cfg.php.dist
