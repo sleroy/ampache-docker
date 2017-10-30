@@ -35,7 +35,7 @@ RUN php -r "readfile('https://getcomposer.org/installer');" | php && \
 # extraction / installation
 WORKDIR /var/www
 RUN rm -rf * && git clone https://github.com/ampache/ampache && mv ampache/* .
-RUN composer install --prefer-source --no-interaction -o && \
+RUN composer install --prefer-source --no-interaction -o 
 RUN chown -R www-data ..
 
 ADD ampache.cfg.php.dist /var/temp/ampache.cfg.php.dist
